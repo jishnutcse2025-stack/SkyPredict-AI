@@ -1,0 +1,797 @@
+{
+  "trained_at": "2026-10-02T13:04:18.747974",
+  "dataset_path": "data\\flights.csv",
+  "dataset_records": 15000,
+  "train_samples": 12000,
+  "test_samples": 3000,
+  "random_state": 42,
+  "categorical_features": [
+    "airline",
+    "origin",
+    "dest",
+    "weather_condition"
+  ],
+  "numerical_features": [
+    "sched_dep_hour",
+    "day_of_week",
+    "month",
+    "distance_miles",
+    "sched_elapsed_min",
+    "temp_c",
+    "wind_speed_kts",
+    "visibility_miles"
+  ],
+  "target_classification": "is_delayed (delay >= 15 min)",
+  "target_regression": "dep_delay_min (minutes)",
+  "default_classification_model": "xgboost",
+  "default_regression_model": "xgboost_regressor",
+  "classification_models": {
+    "logistic_regression": {
+      "key": "logistic_regression",
+      "display_name": "Logistic Regression",
+      "model_type": "Linear / Probabilistic",
+      "metrics": {
+        "model_key": "logistic_regression",
+        "accuracy": 0.6903,
+        "precision": 0.6792,
+        "recall": 0.6692,
+        "f1_score": 0.6741,
+        "roc_auc": 0.7491,
+        "confusion_matrix": {
+          "true_negatives": 1110,
+          "false_positives": 454,
+          "false_negatives": 475,
+          "true_positives": 961,
+          "matrix": [
+            [
+              1110,
+              454
+            ],
+            [
+              475,
+              961
+            ]
+          ],
+          "total_tested": 3000
+        },
+        "roc_curve": [
+          {
+            "fpr": 0.0,
+            "tpr": 0.0
+          },
+          {
+            "fpr": 0.0198,
+            "tpr": 0.1414
+          },
+          {
+            "fpr": 0.0428,
+            "tpr": 0.2124
+          },
+          {
+            "fpr": 0.0633,
+            "tpr": 0.2904
+          },
+          {
+            "fpr": 0.087,
+            "tpr": 0.3426
+          },
+          {
+            "fpr": 0.1113,
+            "tpr": 0.39
+          },
+          {
+            "fpr": 0.1394,
+            "tpr": 0.4519
+          },
+          {
+            "fpr": 0.1624,
+            "tpr": 0.4923
+          },
+          {
+            "fpr": 0.195,
+            "tpr": 0.5481
+          },
+          {
+            "fpr": 0.2231,
+            "tpr": 0.5975
+          },
+          {
+            "fpr": 0.2481,
+            "tpr": 0.6316
+          },
+          {
+            "fpr": 0.2813,
+            "tpr": 0.6636
+          },
+          {
+            "fpr": 0.3139,
+            "tpr": 0.6901
+          },
+          {
+            "fpr": 0.3561,
+            "tpr": 0.7305
+          },
+          {
+            "fpr": 0.3996,
+            "tpr": 0.766
+          },
+          {
+            "fpr": 0.438,
+            "tpr": 0.7987
+          },
+          {
+            "fpr": 0.4815,
+            "tpr": 0.8287
+          },
+          {
+            "fpr": 0.5269,
+            "tpr": 0.8489
+          },
+          {
+            "fpr": 0.5889,
+            "tpr": 0.8719
+          },
+          {
+            "fpr": 0.6349,
+            "tpr": 0.8955
+          },
+          {
+            "fpr": 0.7091,
+            "tpr": 0.9157
+          },
+          {
+            "fpr": 0.773,
+            "tpr": 0.9359
+          },
+          {
+            "fpr": 0.8478,
+            "tpr": 0.9568
+          },
+          {
+            "fpr": 0.9246,
+            "tpr": 0.9777
+          },
+          {
+            "fpr": 1.0,
+            "tpr": 1.0
+          }
+        ]
+      },
+      "feature_importance": [
+        {
+          "feature": "weather_condition",
+          "importance": 0.5206
+        },
+        {
+          "feature": "origin",
+          "importance": 0.1509
+        },
+        {
+          "feature": "dest",
+          "importance": 0.122
+        },
+        {
+          "feature": "airline",
+          "importance": 0.0941
+        },
+        {
+          "feature": "sched_dep_hour",
+          "importance": 0.0855
+        },
+        {
+          "feature": "visibility_miles",
+          "importance": 0.0137
+        },
+        {
+          "feature": "day_of_week",
+          "importance": 0.0055
+        },
+        {
+          "feature": "sched_elapsed_min",
+          "importance": 0.003
+        },
+        {
+          "feature": "wind_speed_kts",
+          "importance": 0.0025
+        },
+        {
+          "feature": "month",
+          "importance": 0.0011
+        },
+        {
+          "feature": "distance_miles",
+          "importance": 0.001
+        },
+        {
+          "feature": "temp_c",
+          "importance": 0.0001
+        }
+      ],
+      "artifact_path": "logistic_regression_model.joblib"
+    },
+    "decision_tree": {
+      "key": "decision_tree",
+      "display_name": "Decision Tree Classifier",
+      "model_type": "Tree-based",
+      "metrics": {
+        "model_key": "decision_tree",
+        "accuracy": 0.677,
+        "precision": 0.6837,
+        "recall": 0.6052,
+        "f1_score": 0.642,
+        "roc_auc": 0.7212,
+        "confusion_matrix": {
+          "true_negatives": 1162,
+          "false_positives": 402,
+          "false_negatives": 567,
+          "true_positives": 869,
+          "matrix": [
+            [
+              1162,
+              402
+            ],
+            [
+              567,
+              869
+            ]
+          ],
+          "total_tested": 3000
+        },
+        "roc_curve": [
+          {
+            "fpr": 0.0,
+            "tpr": 0.0
+          },
+          {
+            "fpr": 0.0064,
+            "tpr": 0.055
+          },
+          {
+            "fpr": 0.0141,
+            "tpr": 0.0759
+          },
+          {
+            "fpr": 0.0185,
+            "tpr": 0.0857
+          },
+          {
+            "fpr": 0.0384,
+            "tpr": 0.1769
+          },
+          {
+            "fpr": 0.0799,
+            "tpr": 0.2883
+          },
+          {
+            "fpr": 0.1049,
+            "tpr": 0.3343
+          },
+          {
+            "fpr": 0.1592,
+            "tpr": 0.4387
+          },
+          {
+            "fpr": 0.1739,
+            "tpr": 0.4582
+          },
+          {
+            "fpr": 0.1886,
+            "tpr": 0.4749
+          },
+          {
+            "fpr": 0.1995,
+            "tpr": 0.4937
+          },
+          {
+            "fpr": 0.25,
+            "tpr": 0.5926
+          },
+          {
+            "fpr": 0.2577,
+            "tpr": 0.6058
+          },
+          {
+            "fpr": 0.3229,
+            "tpr": 0.6804
+          },
+          {
+            "fpr": 0.3971,
+            "tpr": 0.7514
+          },
+          {
+            "fpr": 0.3977,
+            "tpr": 0.7563
+          },
+          {
+            "fpr": 0.4699,
+            "tpr": 0.7994
+          },
+          {
+            "fpr": 0.4802,
+            "tpr": 0.8057
+          },
+          {
+            "fpr": 0.5537,
+            "tpr": 0.8391
+          },
+          {
+            "fpr": 0.5754,
+            "tpr": 0.8489
+          },
+          {
+            "fpr": 0.6707,
+            "tpr": 0.8767
+          },
+          {
+            "fpr": 0.906,
+            "tpr": 0.9513
+          },
+          {
+            "fpr": 0.9699,
+            "tpr": 0.9742
+          },
+          {
+            "fpr": 0.9725,
+            "tpr": 0.9812
+          },
+          {
+            "fpr": 1.0,
+            "tpr": 1.0
+          }
+        ]
+      },
+      "feature_importance": [
+        {
+          "feature": "sched_dep_hour",
+          "importance": 0.6484
+        },
+        {
+          "feature": "weather_condition",
+          "importance": 0.1509
+        },
+        {
+          "feature": "wind_speed_kts",
+          "importance": 0.0458
+        },
+        {
+          "feature": "temp_c",
+          "importance": 0.0394
+        },
+        {
+          "feature": "airline",
+          "importance": 0.0301
+        },
+        {
+          "feature": "day_of_week",
+          "importance": 0.0225
+        },
+        {
+          "feature": "origin",
+          "importance": 0.0217
+        },
+        {
+          "feature": "dest",
+          "importance": 0.019
+        },
+        {
+          "feature": "distance_miles",
+          "importance": 0.0129
+        },
+        {
+          "feature": "month",
+          "importance": 0.0063
+        },
+        {
+          "feature": "visibility_miles",
+          "importance": 0.0023
+        },
+        {
+          "feature": "sched_elapsed_min",
+          "importance": 0.0007
+        }
+      ],
+      "artifact_path": "decision_tree_model.joblib"
+    },
+    "random_forest": {
+      "key": "random_forest",
+      "display_name": "Random Forest Classifier",
+      "model_type": "Ensemble (Bagging)",
+      "metrics": {
+        "model_key": "random_forest",
+        "accuracy": 0.6917,
+        "precision": 0.6635,
+        "recall": 0.7221,
+        "f1_score": 0.6916,
+        "roc_auc": 0.747,
+        "confusion_matrix": {
+          "true_negatives": 1038,
+          "false_positives": 526,
+          "false_negatives": 399,
+          "true_positives": 1037,
+          "matrix": [
+            [
+              1038,
+              526
+            ],
+            [
+              399,
+              1037
+            ]
+          ],
+          "total_tested": 3000
+        },
+        "roc_curve": [
+          {
+            "fpr": 0.0,
+            "tpr": 0.0
+          },
+          {
+            "fpr": 0.0205,
+            "tpr": 0.1643
+          },
+          {
+            "fpr": 0.0409,
+            "tpr": 0.2333
+          },
+          {
+            "fpr": 0.0716,
+            "tpr": 0.2946
+          },
+          {
+            "fpr": 0.0965,
+            "tpr": 0.3496
+          },
+          {
+            "fpr": 0.1157,
+            "tpr": 0.4116
+          },
+          {
+            "fpr": 0.1483,
+            "tpr": 0.4638
+          },
+          {
+            "fpr": 0.1733,
+            "tpr": 0.5181
+          },
+          {
+            "fpr": 0.2014,
+            "tpr": 0.5508
+          },
+          {
+            "fpr": 0.2315,
+            "tpr": 0.5898
+          },
+          {
+            "fpr": 0.2602,
+            "tpr": 0.633
+          },
+          {
+            "fpr": 0.2884,
+            "tpr": 0.6699
+          },
+          {
+            "fpr": 0.3191,
+            "tpr": 0.7054
+          },
+          {
+            "fpr": 0.3542,
+            "tpr": 0.7375
+          },
+          {
+            "fpr": 0.3894,
+            "tpr": 0.7688
+          },
+          {
+            "fpr": 0.4316,
+            "tpr": 0.7967
+          },
+          {
+            "fpr": 0.4879,
+            "tpr": 0.8182
+          },
+          {
+            "fpr": 0.5339,
+            "tpr": 0.8405
+          },
+          {
+            "fpr": 0.5812,
+            "tpr": 0.8642
+          },
+          {
+            "fpr": 0.6324,
+            "tpr": 0.8865
+          },
+          {
+            "fpr": 0.6797,
+            "tpr": 0.9095
+          },
+          {
+            "fpr": 0.7602,
+            "tpr": 0.9338
+          },
+          {
+            "fpr": 0.8389,
+            "tpr": 0.9554
+          },
+          {
+            "fpr": 0.9393,
+            "tpr": 0.9791
+          },
+          {
+            "fpr": 1.0,
+            "tpr": 1.0
+          }
+        ]
+      },
+      "feature_importance": [
+        {
+          "feature": "sched_dep_hour",
+          "importance": 0.4521
+        },
+        {
+          "feature": "weather_condition",
+          "importance": 0.1144
+        },
+        {
+          "feature": "wind_speed_kts",
+          "importance": 0.076
+        },
+        {
+          "feature": "visibility_miles",
+          "importance": 0.0719
+        },
+        {
+          "feature": "temp_c",
+          "importance": 0.0615
+        },
+        {
+          "feature": "dest",
+          "importance": 0.0438
+        },
+        {
+          "feature": "origin",
+          "importance": 0.0402
+        },
+        {
+          "feature": "airline",
+          "importance": 0.036
+        },
+        {
+          "feature": "day_of_week",
+          "importance": 0.0306
+        },
+        {
+          "feature": "sched_elapsed_min",
+          "importance": 0.0266
+        },
+        {
+          "feature": "distance_miles",
+          "importance": 0.0239
+        },
+        {
+          "feature": "month",
+          "importance": 0.0231
+        }
+      ],
+      "artifact_path": "random_forest_model.joblib"
+    },
+    "xgboost": {
+      "key": "xgboost",
+      "display_name": "XGBoost Classifier",
+      "model_type": "Gradient Boosted Trees",
+      "metrics": {
+        "model_key": "xgboost",
+        "accuracy": 0.6867,
+        "precision": 0.6749,
+        "recall": 0.6664,
+        "f1_score": 0.6706,
+        "roc_auc": 0.74,
+        "confusion_matrix": {
+          "true_negatives": 1103,
+          "false_positives": 461,
+          "false_negatives": 479,
+          "true_positives": 957,
+          "matrix": [
+            [
+              1103,
+              461
+            ],
+            [
+              479,
+              957
+            ]
+          ],
+          "total_tested": 3000
+        },
+        "roc_curve": [
+          {
+            "fpr": 0.0,
+            "tpr": 0.0
+          },
+          {
+            "fpr": 0.0211,
+            "tpr": 0.1288
+          },
+          {
+            "fpr": 0.0435,
+            "tpr": 0.2117
+          },
+          {
+            "fpr": 0.0646,
+            "tpr": 0.2653
+          },
+          {
+            "fpr": 0.0889,
+            "tpr": 0.3175
+          },
+          {
+            "fpr": 0.1106,
+            "tpr": 0.374
+          },
+          {
+            "fpr": 0.1362,
+            "tpr": 0.415
+          },
+          {
+            "fpr": 0.1592,
+            "tpr": 0.4652
+          },
+          {
+            "fpr": 0.1854,
+            "tpr": 0.5202
+          },
+          {
+            "fpr": 0.2155,
+            "tpr": 0.5641
+          },
+          {
+            "fpr": 0.2379,
+            "tpr": 0.6024
+          },
+          {
+            "fpr": 0.2634,
+            "tpr": 0.6372
+          },
+          {
+            "fpr": 0.2986,
+            "tpr": 0.6706
+          },
+          {
+            "fpr": 0.3338,
+            "tpr": 0.6964
+          },
+          {
+            "fpr": 0.3792,
+            "tpr": 0.7333
+          },
+          {
+            "fpr": 0.4175,
+            "tpr": 0.766
+          },
+          {
+            "fpr": 0.4655,
+            "tpr": 0.7967
+          },
+          {
+            "fpr": 0.5051,
+            "tpr": 0.8287
+          },
+          {
+            "fpr": 0.5543,
+            "tpr": 0.8572
+          },
+          {
+            "fpr": 0.6164,
+            "tpr": 0.883
+          },
+          {
+            "fpr": 0.6969,
+            "tpr": 0.9102
+          },
+          {
+            "fpr": 0.773,
+            "tpr": 0.9318
+          },
+          {
+            "fpr": 0.8293,
+            "tpr": 0.9575
+          },
+          {
+            "fpr": 0.915,
+            "tpr": 0.9791
+          },
+          {
+            "fpr": 1.0,
+            "tpr": 1.0
+          }
+        ]
+      },
+      "feature_importance": [
+        {
+          "feature": "weather_condition",
+          "importance": 0.2688
+        },
+        {
+          "feature": "dest",
+          "importance": 0.2024
+        },
+        {
+          "feature": "origin",
+          "importance": 0.2001
+        },
+        {
+          "feature": "airline",
+          "importance": 0.1253
+        },
+        {
+          "feature": "sched_dep_hour",
+          "importance": 0.0984
+        },
+        {
+          "feature": "visibility_miles",
+          "importance": 0.02
+        },
+        {
+          "feature": "wind_speed_kts",
+          "importance": 0.0187
+        },
+        {
+          "feature": "day_of_week",
+          "importance": 0.0175
+        },
+        {
+          "feature": "temp_c",
+          "importance": 0.0175
+        },
+        {
+          "feature": "distance_miles",
+          "importance": 0.0165
+        },
+        {
+          "feature": "month",
+          "importance": 0.0148
+        },
+        {
+          "feature": "sched_elapsed_min",
+          "importance": 0.0
+        }
+      ],
+      "artifact_path": "xgboost_model.joblib"
+    }
+  },
+  "regression_models": {
+    "linear_regression": {
+      "key": "linear_regression",
+      "display_name": "Linear Regression",
+      "metrics": {
+        "model_key": "linear_regression",
+        "mae": 17.87,
+        "rmse": 22.86,
+        "r2_score": 0.2441
+      },
+      "artifact_path": "linear_regression_model.joblib"
+    },
+    "rf_regressor": {
+      "key": "rf_regressor",
+      "display_name": "Random Forest Regressor",
+      "metrics": {
+        "model_key": "rf_regressor",
+        "mae": 17.91,
+        "rmse": 22.99,
+        "r2_score": 0.2355
+      },
+      "artifact_path": "rf_regressor_model.joblib"
+    },
+    "xgboost_regressor": {
+      "key": "xgboost_regressor",
+      "display_name": "XGBoost Regressor",
+      "metrics": {
+        "model_key": "xgboost_regressor",
+        "mae": 17.92,
+        "rmse": 23.0,
+        "r2_score": 0.2346
+      },
+      "artifact_path": "xgboost_regressor_model.joblib"
+    }
+  }
+}
