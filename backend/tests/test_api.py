@@ -129,18 +129,18 @@ def test_report_generation(client):
 
 def test_cors_production_vercel_origin(client):
     """
-    Verifies that requests from the production Vercel domain receive the correct
-    Access-Control-Allow-Origin and Access-Control-Allow-Credentials headers.
+    Verifies that requests from the exact deployed production Vercel domain receive the correct
+    Access-Control-Allow-Origin and Access-Control-Allow-Credentials headers on GET and OPTIONS.
     """
-    prod_origin = "https://sky-predict-ai.vercel.app"
+    prod_origin = "https://sky-predict-97tlcbuw6-jishnutcse2025-stack.vercel.app"
 
-    # Test GET request
-    response = client.get("/api/health", headers={"Origin": prod_origin})
+    # Test GET request to /api/dashboard
+    response = client.get("/api/dashboard", headers={"Origin": prod_origin})
     assert response.status_code == 200
     assert response.headers.get("access-control-allow-origin") == prod_origin
     assert response.headers.get("access-control-allow-credentials") == "true"
 
-    # Test OPTIONS preflight request
+    # Test OPTIONS preflight request to /api/dashboard
     options_res = client.options(
         "/api/dashboard",
         headers={

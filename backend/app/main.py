@@ -202,6 +202,7 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
+        "https://sky-predict-97tlcbuw6-jishnutcse2025-stack.vercel.app",
         "https://sky-predict-ai.vercel.app",
         "http://localhost:5173",
         "http://127.0.0.1:5173",
@@ -210,7 +211,7 @@ app.add_middleware(
         "http://localhost:3000",
         "http://127.0.0.1:3000",
     ],
-    allow_origin_regex=r"^(https?://(localhost|127\.0\.0\.1)(:[0-9]+)?|https://sky-predict-ai(-[a-zA-Z0-9_-]+)?\.vercel\.app)$",
+    allow_origin_regex=r"^(https?://(localhost|127\.0\.0\.1)(:[0-9]+)?|https://(sky-predict|sky-predict-ai|skypredict)(-[a-zA-Z0-9_-]+)?\.vercel\.app)$",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
