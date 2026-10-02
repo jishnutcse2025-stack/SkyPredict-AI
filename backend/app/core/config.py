@@ -10,8 +10,11 @@ class Settings:
     APP_ENV: str = os.getenv("APP_ENV", "development")
     API_V1_PREFIX: str = "/api"
     CORS_ORIGINS: list = [
+        "https://sky-predict-ai.vercel.app",
         "http://localhost:5173",
         "http://127.0.0.1:5173",
+        "http://localhost:4173",
+        "http://127.0.0.1:4173",
         "http://localhost:3000",
         "http://127.0.0.1:3000"
     ]

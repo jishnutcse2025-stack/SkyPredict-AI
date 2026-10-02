@@ -198,10 +198,11 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-# CORS Configuration - Explicitly allows localhost and 127.0.0.1 on any port (5173, 4173, 3000, etc.)
+# CORS Configuration - Allows production Vercel frontend, preview deployments, and local development
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
+        "https://sky-predict-ai.vercel.app",
         "http://localhost:5173",
         "http://127.0.0.1:5173",
         "http://localhost:4173",
@@ -209,7 +210,7 @@ app.add_middleware(
         "http://localhost:3000",
         "http://127.0.0.1:3000",
     ],
-    allow_origin_regex=r"^https?://(localhost|127\.0\.0\.1)(:[0-9]+)?$",
+    allow_origin_regex=r"^(https?://(localhost|127\.0\.0\.1)(:[0-9]+)?|https://sky-predict-ai(-[a-zA-Z0-9_-]+)?\.vercel\.app)$",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

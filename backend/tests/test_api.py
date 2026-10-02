@@ -126,3 +126,57 @@ def test_report_generation(client):
     assert pdf_res.status_code == 200
     assert pdf_res.headers["content-type"] == "application/pdf"
     assert len(pdf_res.content) > 1000
+
+def test_cors_production_vercel_origin(client):
+    """
+    Verifies that requests from the production Vercel domain receive the correct
+    Access-Control-Allow-Origin and Access-Control-Allow-Credentials headers.
+    """
+    prod_origin = "https://sky-predict-ai.vercel.app"
+
+    # Test GET request
+    response = client.get("/api/health", headers={"Origin": prod_origin})
+    assert response.status_code == 200
+    assert response.headers.get("access-control-allow-origin") == prod_origin
+    assert response.headers.get("access-control-allow-credentials") == "true"
+
+    # Test OPTIONS preflight request
+    options_res = client.options(
+        "/api/dashboard",
+        headers={
+            "Origin": prod_origin,
+            "Access-Control-Request-Method": "GET"
+        }
+    )
+    assert options_res.status_code == 200
+    assert options_res.headers.get("access-control-allow-origin") == prod_origin
+    assert options_res.headers.get("access-control-allow-credentials") == "true"
+
+def test_cors_vercel_preview_origin(client):
+    """
+    Verifies that requests from Vercel preview deployment domains are safely allowed.
+    """
+    preview_origin = "https://sky-predict-ai-preview-branch.vercel.app"
+    response = client.get("/api/health", headers={"Origin": preview_origin})
+    assert response.status_code == 200
+    assert response.headers.get("access-control-allow-origin") == preview_origin
+    assert response.headers.get("access-control-allow-credentials") == "true"
+
+def test_cors_arbitrary_origin_rejected(client):
+    """
+    Verifies that arbitrary external origins are not granted CORS access.
+    """
+    unauthorized_origin = "https://arbitrary-malicious-site.com"
+    response = client.get("/api/health", headers={"Origin": unauthorized_origin})
+    assert response.status_code == 200
+    assert response.headers.get("access-control-allow-origin") != unauthorized_origin
+
+def test_cors_localhost_preserved(client):
+    """
+    Verifies that local development origins continue to function with CORS.
+    """
+    local_origin = "http://localhost:5173"
+    response = client.get("/api/health", headers={"Origin": local_origin})
+    assert response.status_code == 200
+    assert response.headers.get("access-control-allow-origin") == local_origin
+
